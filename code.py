@@ -14,10 +14,11 @@ main_frame.pack(fill=BOTH,expand=1)
 
 #-----------------------------------------------------------------------------------------------------------------
 
-directory = "C:/Users/baudo/Desktop/number.txt"
+directory = "archive.txt"
 quantite = IntVar()
 resultat = StringVar()
 sauce = StringVar()
+randomV = StringVar()
 
 
 #Fonction data :----------------------------------------------------------------------------------------------------------
@@ -54,10 +55,12 @@ def quantity() :
 		liste_number_lignes = liste_number.readlines()
 		quantite.set(int(len(liste_number_lignes)))
 
-def random() :
+def randomF() :
+	global randomV
 	with open(directory,"r") as liste_number :
 		liste_number_lignes = liste_number.readlines()
-		random.set(liste_number_lignes[random.randrange(len(liste_number_lignes))])
+		randomV.set(random.choice(liste_number_lignes))
+		"""(liste_number_lignes[Random.randint(0, 4)])"""
 
 def ajouter() :
 	global sauce
@@ -66,7 +69,7 @@ def ajouter() :
 		liste_number_lignes.append("\n"+sauce.get())
 	with open(directory,"w") as liste_number :
 		liste_number.writelines(liste_number_lignes)
-		resultat.set("ajouté à l'Archive")
+		resultat.set(sauce.get()+"ajouté à l'Archive")
 
 #Fonction Tk.Frame :-------------------------------------------------------------------------------------------------------------
 
@@ -81,6 +84,19 @@ def menu():
 	stat = Button(FrameMenu,text="stat",command=frame_stat).pack(fill=BOTH)
 
 	ajout = Button(FrameMenu,text="Ajouter",command=frame_ajout).pack(fill=BOTH)
+
+	randomVee = Button(FrameMenu,text="random",command=frame_random).pack(fill=BOTH,side="bottom")
+
+	fen = Button(FrameMenu,text="new",command=frame_frame).pack(fill=BOTH)
+
+def frame_frame() :
+	recreate()
+	new = Tk()
+	new.title("ok")
+	new.minisize(200,200)
+	fr = Frame(new).pack(fill=BOTH)
+	sp = Label(fr,text="newwwwwwwwwww").pack()  #A VOIR 
+	new.mainloop()
 
 def recreate():
 	global frame_affichage
@@ -112,8 +128,11 @@ def frame_doublon():
 	elim = Button(frame_affichage,text="clear rrrrr",command=eliminer_doublon).pack()
 	s4 = Label(frame_affichage,textvariable=resultat).pack()
 		
-
-
+def frame_random() :
+	recreate()
+	randomV.set("")
+	b1 = Button(frame_affichage,text="generer un random",command=randomF).pack()
+	s5 = Label(frame_affichage,textvariable=randomV).pack()
 
 
 
@@ -121,6 +140,7 @@ def frame_ajout():
 	recreate()
 	entre = Entry(frame_affichage,textvariable=sauce).pack()
 	ajoutereeeeee = Button(frame_affichage,text="Ajouter",command=ajouter).pack()
+	l9 = Label(frame_affichage,textvariable=resultat).pack()
 
 #Programme :---------------------------------------------------------------------------------------------------------
 
