@@ -93,8 +93,9 @@ def frame_frame() :
 	recreate()
 	new = Tk()
 	new.title("ok")
-	new.minisize(200,200)
-	fr = Frame(new).pack(fill=BOTH)
+	new.minsize(200,200)
+	fr = Frame(new)
+	fr.pack()
 	sp = Label(fr,text="newwwwwwwwwww").pack()  #A VOIR 
 	new.mainloop()
 
@@ -140,7 +141,7 @@ def frame_ajout():
 	recreate()
 	entre = Entry(frame_affichage,textvariable=sauce).pack()
 	ajoutereeeeee = Button(frame_affichage,text="Ajouter",command=ajouter).pack()
-	l9 = Label(frame_affichage,textvariable=resultat).pack()
+	lop = Label(frame_affichage,textvariable=resultat).pack()
 
 #Programme :---------------------------------------------------------------------------------------------------------
 
