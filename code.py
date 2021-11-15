@@ -94,8 +94,8 @@ def frame_frame() :
 	new = Tk()
 	new.title("ok")
 	new.minsize(200,200)
-	fr = Frame(new)
-	fr.pack()
+	fr = Frame(new,bg="blue")
+	fr.pack(fill=BOTH,expand=1)
 	sp = Label(fr,text="newwwwwwwwwww").pack()  #A VOIR 
 	new.mainloop()
 
